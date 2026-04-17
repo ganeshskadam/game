@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameVerse | Free Fire</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-bg"></div>
+
+    <header class="navbar glass">
+      <a class="brand" href="index.html" aria-label="GameVerse home">
+        <span class="brand__icon">🎮</span>
+        <span class="brand__text">GameVerse</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="#">Leaderboard</a>
+        <a class="nav-link" href="join-team.html">Join Team</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn--ghost">Login</button>
+        <button class="btn btn--glow">Sign Up</button>
+      </div>
+    </header>
+
+    <main class="game-page">
+      <section class="game-hero">
+        <div class="game-hero__overlay"></div>
+        <h1>FREE FIRE</h1>
+      </section>
+
+      <section class="filter-bar glass" aria-label="Video filters">
+        <div id="filter-chips" class="filter-chips"></div>
+        <label class="search-box" for="video-search">
+          <span aria-hidden="true">⌕</span>
+          <input id="video-search" type="search" placeholder="Search videos..." />
+        </label>
+      </section>
+
+      <section>
+        <div id="game-grid" class="video-grid video-grid--game"></div>
+        <button id="load-more" class="btn btn--hero load-more">Load More</button>
+      </section>
+
+      <footer class="site-footer">
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+      </footer>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
