@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameVerse | Free Fire</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="game.css" />
+  </head>
+  <body>
+    <div class="page-bg"></div>
+
+    <header class="navbar glass">
+      <a class="brand" href="index.html" aria-label="GameVerse home">
+        <span class="brand__icon">🎮</span>
+        <span class="brand__text">GameVerse</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="#">Leaderboard</a>
+        <a class="nav-link" href="#">Join Team</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn--ghost">Login</button>
+        <button class="btn btn--glow">Sign Up</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="game-hero">
+        <div class="game-hero__overlay"></div>
+        <div class="game-hero__content">
+          <h1>FREE FIRE</h1>
+        </div>
+      </section>
+
+      <section class="toolbar glass">
+        <div id="filters" class="filters" role="tablist" aria-label="Video category filters"></div>
+        <label class="search-field" for="search-input">
+          <span aria-hidden="true">🔍</span>
+          <input id="search-input" type="search" placeholder="Search by title..." />
+        </label>
+      </section>
+
+      <section class="videos-wrap">
+        <div id="video-grid" class="video-grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms &amp; Conditions</a>
+    </footer>
+
+    <script src="game.js"></script>
+  </body>
+</html>
