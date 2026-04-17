@@ -1,87 +1,90 @@
-const filters = ['All', 'Funny 😄', 'Angry 😡', 'Naughty 😏', 'Skills 🎯'];
+const filterOptions = ['All', 'Funny', 'Angry', 'Naughty', 'Skills'];
 
-const videos = [
-  { title: 'Epic Headshots', category: 'Skills', views: '1.2M Views', thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80' },
-  { title: 'Insane Reflexes', category: 'Skills', views: '980K Views', thumbnail: 'https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=800&q=80' },
-  { title: 'Savage One-Taps', category: 'Skills', views: '890K Views', thumbnail: 'https://images.unsplash.com/photo-1548686304-89d188a80029?auto=format&fit=crop&w=800&q=80' },
-  { title: 'Top Shotgun Skills', category: 'Skills', views: '840K Views', thumbnail: 'https://images.unsplash.com/photo-1586182987320-4f376d39d787?auto=format&fit=crop&w=800&q=80' },
-  { title: 'Angry Clutch Win', category: 'Angry', views: '710K Views', thumbnail: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=800&q=80' },
-  { title: 'Funny Squad Fail', category: 'Funny', views: '690K Views', thumbnail: 'https://images.unsplash.com/photo-1511882150382-421056c89033?auto=format&fit=crop&w=800&q=80' },
-  { title: 'Naughty Car Rush', category: 'Naughty', views: '650K Views', thumbnail: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=800&q=80' },
-  { title: 'Perfect AWM Kills', category: 'Skills', views: '800K Views', thumbnail: 'https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?auto=format&fit=crop&w=800&q=80' },
+const gameVideos = [
+  { title: 'Epic Headshots', category: 'Skills', views: '1.2M views', thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80' },
+  { title: 'Insane Reflexes', category: 'Skills', views: '980K views', thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80' },
+  { title: 'Savage One-Taps', category: 'Skills', views: '890K views', thumbnail: 'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=900&q=80' },
+  { title: 'Top Shotgun Skills', category: 'Skills', views: '660K views', thumbnail: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=900&q=80' },
+  { title: 'Funny Grenade Fail', category: 'Funny', views: '1.1M views', thumbnail: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=900&q=80' },
+  { title: 'Angry Rage Moments', category: 'Angry', views: '770K views', thumbnail: 'https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=900&q=80' },
+  { title: 'Naughty Car Chase', category: 'Naughty', views: '710K views', thumbnail: 'https://images.unsplash.com/photo-1547394765-185e1e68f34e?auto=format&fit=crop&w=900&q=80' },
+  { title: 'Perfect AWM Kills', category: 'Skills', views: '800K views', thumbnail: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=901&q=80' },
+  { title: 'Fastest Reflexes', category: 'Skills', views: '1.4M views', thumbnail: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=900&q=80' },
+  { title: 'Pro Squad Wipe', category: 'Skills', views: '1.3M views', thumbnail: 'https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?auto=format&fit=crop&w=900&q=80' },
+  { title: 'Funny Voice Chat Chaos', category: 'Funny', views: '690K views', thumbnail: 'https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=900&q=80' },
+  { title: 'Angry Comeback Match', category: 'Angry', views: '620K views', thumbnail: 'https://images.unsplash.com/photo-1603481588273-2f908a9a7a1b?auto=format&fit=crop&w=900&q=80' },
 ];
 
-const filtersEl = document.getElementById('filters');
-const searchEl = document.getElementById('search-input');
-const gridEl = document.getElementById('video-grid');
+const state = {
+  filter: 'All',
+  query: '',
+  visibleCount: 8,
+};
 
-let activeFilter = 'All';
-let searchTerm = '';
+const filterChips = document.getElementById('filter-chips');
+const gameGrid = document.getElementById('game-grid');
+const searchInput = document.getElementById('video-search');
+const loadMoreBtn = document.getElementById('load-more');
 
 function createFilterChip(label) {
   const chip = document.createElement('button');
-  chip.className = 'chip';
-  chip.type = 'button';
+  chip.className = `chip ${label === state.filter ? 'chip--active' : ''}`;
   chip.textContent = label;
-  chip.dataset.filter = label.split(' ')[0];
+  chip.type = 'button';
   chip.addEventListener('click', () => {
-    activeFilter = chip.dataset.filter;
-    renderFilters();
-    renderVideos();
+    state.filter = label;
+    state.visibleCount = 8;
+    render();
   });
   return chip;
 }
 
 function createVideoCard(video) {
-  const card = document.createElement('article');
-  card.className = 'video-card';
+  const card = document.createElement('a');
+  card.className = 'video-card video-card--game';
+  card.href = 'video-player.html';
   card.innerHTML = `
-    <a class="video-thumb" href="video-player.html" aria-label="Open ${video.title}">
-      <img src="${video.thumbnail}" alt="${video.title} thumbnail" loading="lazy" />
-      <span class="video-category">${video.category}</span>
-      <div class="video-overlay"><span>${video.views}</span></div>
-    </a>
-    <p class="video-title">${video.title}</p>
-    <p class="video-views">${video.views}</p>
+    <img class="video-card__img" src="${video.thumbnail}" alt="${video.title} thumbnail" loading="lazy" />
+    <span class="video-card__badge">${video.category}</span>
+    <div class="video-card__meta">
+      <p class="video-card__title">${video.title}</p>
+      <p class="video-card__views">${video.views}</p>
+    </div>
   `;
   return card;
 }
 
-function renderFilters() {
-  filtersEl.replaceChildren();
-  filters.forEach((label) => {
-    const chip = createFilterChip(label);
-    if (chip.dataset.filter === activeFilter) {
-      chip.classList.add('is-active');
-    }
-    filtersEl.appendChild(chip);
-  });
-}
-
-function renderVideos() {
-  const filtered = videos.filter((video) => {
-    const matchesFilter = activeFilter === 'All' || video.category === activeFilter;
-    const matchesSearch = video.title.toLowerCase().includes(searchTerm);
+function filteredVideos() {
+  return gameVideos.filter((video) => {
+    const matchesFilter = state.filter === 'All' || video.category === state.filter;
+    const matchesSearch = video.title.toLowerCase().includes(state.query.toLowerCase());
     return matchesFilter && matchesSearch;
   });
-
-  gridEl.replaceChildren();
-
-  if (!filtered.length) {
-    const empty = document.createElement('p');
-    empty.textContent = 'No videos found for this filter/search.';
-    empty.style.opacity = '0.8';
-    gridEl.appendChild(empty);
-    return;
-  }
-
-  filtered.map(createVideoCard).forEach((card) => gridEl.appendChild(card));
 }
 
-searchEl.addEventListener('input', (event) => {
-  searchTerm = event.target.value.trim().toLowerCase();
-  renderVideos();
+function render() {
+  filterChips.innerHTML = '';
+  filterOptions.forEach((option) => filterChips.appendChild(createFilterChip(option)));
+
+  const results = filteredVideos();
+  const visibleVideos = results.slice(0, state.visibleCount);
+
+  gameGrid.innerHTML = '';
+  visibleVideos.map(createVideoCard).forEach((card) => gameGrid.appendChild(card));
+
+  const canLoadMore = results.length > state.visibleCount;
+  loadMoreBtn.hidden = !canLoadMore;
+}
+
+searchInput.addEventListener('input', (event) => {
+  state.query = event.target.value.trim();
+  state.visibleCount = 8;
+  render();
 });
 
-renderFilters();
-renderVideos();
+loadMoreBtn.addEventListener('click', () => {
+  state.visibleCount += 4;
+  render();
+});
+
+render();

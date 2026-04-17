@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="game.css" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="page-bg"></div>
@@ -19,7 +19,7 @@
       </a>
 
       <nav class="nav-links" aria-label="Main navigation">
-        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link nav-link--active" href="index.html">Home</a>
         <a class="nav-link" href="#">Leaderboard</a>
         <a class="nav-link" href="#">Join Team</a>
       </nav>
@@ -30,33 +30,32 @@
       </div>
     </header>
 
-    <main>
+    <main class="game-page">
       <section class="game-hero">
         <div class="game-hero__overlay"></div>
-        <div class="game-hero__content">
-          <h1>FREE FIRE</h1>
-        </div>
+        <h1>FREE FIRE</h1>
       </section>
 
-      <section class="toolbar glass">
-        <div id="filters" class="filters" role="tablist" aria-label="Video category filters"></div>
-        <label class="search-field" for="search-input">
-          <span aria-hidden="true">🔍</span>
-          <input id="search-input" type="search" placeholder="Search by title..." />
+      <section class="filter-bar glass" aria-label="Video filters">
+        <div id="filter-chips" class="filter-chips"></div>
+        <label class="search-box" for="video-search">
+          <span aria-hidden="true">⌕</span>
+          <input id="video-search" type="search" placeholder="Search videos..." />
         </label>
       </section>
 
-      <section class="videos-wrap">
-        <div id="video-grid" class="video-grid" aria-live="polite"></div>
+      <section>
+        <div id="game-grid" class="video-grid video-grid--game"></div>
+        <button id="load-more" class="btn btn--hero load-more">Load More</button>
       </section>
-    </main>
 
-    <footer class="footer">
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms &amp; Conditions</a>
-    </footer>
+      <footer class="site-footer">
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+      </footer>
+    </main>
 
     <script src="game.js"></script>
   </body>

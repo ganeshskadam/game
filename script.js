@@ -30,8 +30,9 @@ const freeFireVideos = [
 ];
 
 function createVideoCard(video) {
-  const card = document.createElement('article');
+  const card = document.createElement('a');
   card.className = 'video-card';
+  card.href = 'video-player.html';
   card.innerHTML = `
     <img class="video-card__img" src="${video.thumbnail}" alt="${video.title} thumbnail" loading="lazy" />
     <span class="video-card__badge">${video.category}</span>

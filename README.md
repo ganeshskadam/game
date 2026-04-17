@@ -1,24 +1,16 @@
 # GameVerse UI Prototype
 
-Frontend prototype pages based on the provided gaming UI direction.
+Frontend-only prototype implementing:
 
-## Pages
-
-- `index.html` — Home page (navbar, hero, featured Free Fire section)
-- `game.html` — Free Fire game page (hero banner, filter chips, search, responsive video grid)
-
-## Run locally
-
-Open `index.html` in a browser, then use **See All** to navigate to `game.html`.
-# GameVerse Home UI Prototype
-
-Single-page frontend prototype that implements the requested Home experience:
-
-- Sticky glass navbar
-- Hero section with animated headline and CTA
-- One reusable Free Fire game section
-- Reusable `video-card` component rendered from JavaScript data
+- Home page with sticky glass navbar, hero, CTA, and Free Fire section.
+- New Free Fire game page with:
+  - Hero banner
+  - Filter chips (All, Funny, Angry, Naughty, Skills)
+  - Instant client-side filtering
+  - Search by title
+  - Responsive video grid and load-more
+- Clickable cards routed to a placeholder video player page.
 
 ## Run locally
 
-Open `index.html` directly in a browser.
+Open `index.html` in a browser and navigate to `game.html`.
