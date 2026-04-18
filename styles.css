@@ -1100,3 +1100,148 @@ body {
     margin-top: -1rem;
   }
 }
+
+/* --- Premium cinematic refinement pass --- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(circle at center, transparent 58%, rgba(3, 3, 8, 0.62) 100%);
+}
+
+.glass {
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.nav-link {
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.nav-link:hover {
+  color: #ffd8bf;
+  text-shadow: 0 0 12px rgba(255, 106, 31, 0.55);
+}
+
+.hero,
+.game-hero,
+.player-hero,
+.join-hero {
+  box-shadow: 0 26px 60px rgba(5, 5, 12, 0.55), 0 0 24px rgba(130, 72, 255, 0.16);
+}
+
+.hero__overlay {
+  background: linear-gradient(95deg, rgba(5, 6, 10, 0.9), rgba(5, 6, 10, 0.26) 64%);
+}
+
+.video-grid--row {
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(240px, 280px);
+  grid-template-columns: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 0.3rem;
+}
+
+.video-grid--row .video-card {
+  scroll-snap-align: start;
+  min-height: 180px;
+}
+
+.video-grid--row::-webkit-scrollbar {
+  height: 8px;
+}
+
+.video-grid--row::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, rgba(255, 106, 31, 0.55), rgba(130, 72, 255, 0.55));
+  border-radius: 999px;
+}
+
+.video-grid--game {
+  gap: 1.5rem;
+}
+
+.video-card,
+.related-item,
+.player-card,
+.join-card,
+.player-main,
+.related-panel {
+  transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease, filter 0.32s ease;
+}
+
+.video-card:hover,
+.related-item:hover,
+.player-card:hover {
+  transform: translateY(-5px) scale(1.05);
+}
+
+.search-box {
+  transition: border-color 0.24s ease, box-shadow 0.24s ease, transform 0.24s ease;
+}
+
+.search-box:focus-within {
+  transform: translateY(-1px);
+}
+
+.like-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.like-button::after {
+  content: '';
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.35), transparent 45%);
+  transform: scale(0);
+  transition: transform 0.35s ease;
+}
+
+.like-button:hover::after {
+  transform: scale(1);
+}
+
+.btn,
+.join-btn,
+.like-button,
+.see-all,
+.chip {
+  transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease, border-color 0.24s ease;
+}
+
+.btn:hover,
+.join-btn:hover,
+.like-button:hover,
+.see-all:hover,
+.chip:hover {
+  filter: brightness(1.08);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+@media (max-width: 960px) {
+  .video-grid--row {
+    grid-auto-columns: minmax(220px, 250px);
+  }
+}
+
+@media (max-width: 640px) {
+  .video-card:hover,
+  .related-item:hover,
+  .player-card:hover {
+    transform: translateY(-3px) scale(1.02);
+  }
+}
