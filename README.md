@@ -1,17 +1,22 @@
-# GameVerse UI Prototype
+# GameVerse Premium UI
 
-Frontend-only prototype implementing a premium gaming video platform UI:
+A fully transformed cinematic frontend for a gaming video platform using **HTML + Tailwind CSS + JavaScript**.
 
-- Home page with cinematic hero, Netflix-style horizontal card row, and glow-driven interactions.
-- Free Fire game page with hero banner, pill filters, instant search/filtering, and responsive card grid.
-- Video player page with large embedded player, pulsing like button, and dynamic related videos.
-- Join Team page with glass join card, animated validation states, and active players cards.
-- Shared scroll-reveal and micro-interaction effects across all pages.
+## Pages
+
+- `index.html` — Home with cinematic hero and Netflix-style horizontal video row
+- `game.html` — Game catalog with glow chips, search, and premium video grid
+- `video-player.html` — Large player layout with animated like and related feed
+- `join-team.html` — Floating glass join card and active players section
+
+## Features
+
+- Layered cinematic background (radial lights + vignette + animated glow)
+- Glassmorphism UI system with neon depth
+- Hover lift/scale/glow interactions across cards and controls
+- Reveal-on-scroll motion for all major sections
+- Client-side interactions for filters, search, likes, related switching, and team-code validation
 
 ## Run locally
 
-Open `index.html` in a browser and navigate to:
-
-- `game.html`
-- `video-player.html`
-- `join-team.html`
+Open `index.html` in your browser and navigate between pages.
