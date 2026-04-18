@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameVerse | Free Fire Video</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-bg"></div>
+
+    <header class="navbar glass">
+      <a class="brand" href="index.html" aria-label="GameVerse home">
+        <span class="brand__icon">🎮</span>
+        <span class="brand__text">GameVerse</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="#">Leaderboard</a>
+        <a class="nav-link" href="join-team.html">Join Team</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn--ghost">Logout</button>
+        <button class="avatar-btn" aria-label="Profile menu">👾</button>
+      </div>
+    </header>
+
+    <main class="player-page">
+      <section class="player-hero reveal">
+        <div class="game-hero__overlay"></div>
+        <h1>FREE FIRE</h1>
+      </section>
+
+      <section class="player-layout reveal">
+        <article class="player-main">
+          <header class="player-header">
+            <h2 id="video-title">Epic Headshots and Insane Gameplay!</h2>
+            <button id="like-button" class="like-button" type="button" aria-pressed="false">
+              ❤️ <span id="like-count">34.7K</span>
+            </button>
+          </header>
+          <p id="video-views" class="player-views">1.2M views</p>
+
+          <div class="video-frame-wrap">
+            <iframe
+              id="video-frame"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
+              title="GameVerse video player"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <footer class="player-meta">
+            <h3 id="video-title-bottom">Epic Headshots and Insane Gameplay!</h3>
+            <div class="player-meta-row">
+              <p id="video-views-bottom">1.2M views</p>
+              <button id="like-button-bottom" class="like-button" type="button" aria-pressed="false">
+                ❤️ <span id="like-count-bottom">34.7K</span>
+              </button>
+            </div>
+          </footer>
+        </article>
+
+        <aside class="related-panel">
+          <h3>Related Videos</h3>
+          <div id="related-list" class="related-list"></div>
+        </aside>
+      </section>
+
+      <footer class="site-footer">
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+      </footer>
+    </main>
+
+    <script src="player.js"></script>
+      <script src="ui-effects.js"></script>
+  </body>
+</html>
