@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameVerse | Join Team</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-bg"></div>
+
+    <header class="container navbar glass">
+      <div class="navbar__inner">
+        <a class="brand" href="index.html">🎮 GameVerse</a>
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="#">Leaderboard</a>
+          <a href="join-team.html" class="active">Join Team</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="btn btn--ghost">Logout</button>
+          <button class="btn btn--ghost">👾</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero reveal">
+        <div class="hero__image" style="background-image:url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=2100&q=80')"></div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+          <h1 class="hero__title">JOIN A <em>TEAM</em></h1>
+          <p class="hero__text">Enter the team code and instantly join your squad.</p>
+        </div>
+      </section>
+
+      <section class="join-card glass reveal">
+        <div style="text-align:center">
+          <div style="width:70px;height:70px;border-radius:999px; margin:0 auto 0.7rem; display:grid;place-items:center; font-size:2.2rem; background:linear-gradient(120deg,rgba(255,127,42,0.8),rgba(140,101,255,0.68)); box-shadow:0 0 24px rgba(255,127,42,0.38)">👥</div>
+          <h2 style="margin:0; font-size:clamp(1.9rem,4vw,3rem)">Unstoppable Legends</h2>
+          <p class="muted" style="margin:0.45rem 0 0">Enter the team code to join your squad.</p>
+        </div>
+
+        <form id="join-form" novalidate class="join-form">
+          <label for="team-code" style="position:absolute;left:-9999px">Team code</label>
+          <input id="team-code" type="text" placeholder="Enter Team Code" maxlength="16" />
+          <button type="submit" class="btn btn--primary" style="font-size:1.35rem;padding:0.8rem 1.1rem">Join Team</button>
+          <p id="join-message" class="join-message" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="section reveal" style="margin-top:2rem">
+        <div class="section__head">
+          <h2>ACTIVE PLAYERS</h2>
+          <span class="btn btn--ghost" style="padding:0.45rem 0.75rem">🛡 5/12</span>
+        </div>
+        <div id="players-grid" class="players-grid"></div>
+      </section>
+
+      <footer class="footer">
+        <a href="#">About</a><a href="#">Contact</a><a href="#">Privacy Policy</a><a href="#">Terms & Conditions</a>
+      </footer>
+    </main>
+
+    <script src="join.js"></script>
+    <script src="ui-effects.js"></script>
+  </body>
+</html>
