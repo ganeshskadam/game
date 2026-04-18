@@ -7,46 +7,42 @@ const players = [
   { name: 'Jessica', role: 'Strategist', image: 'https://images.unsplash.com/photo-1601412436469-dfc0bd0c8f70?auto=format&fit=crop&w=800&q=80' },
 ];
 
+const form = document.getElementById('join-form');
+const input = document.getElementById('team-code');
+const message = document.getElementById('join-message');
+const card = document.querySelector('.join-card');
 const playersGrid = document.getElementById('players-grid');
-const joinForm = document.getElementById('join-form');
-const joinCard = document.getElementById('join-card');
-const teamCodeInput = document.getElementById('team-code');
-const joinMessage = document.getElementById('join-message');
 
-function createPlayerCard(player) {
+function playerCard(player) {
   const card = document.createElement('article');
-  card.className = 'hover-card glass-card neon-border rounded-2xl p-4';
+  card.className = 'player-card video-card';
   card.innerHTML = `
-    <div class="mx-auto mb-3 h-24 w-24 overflow-hidden rounded-full border border-purple-300/60 shadow-[0_0_16px_rgba(138,92,255,0.4)]">
-      <img src="${player.image}" alt="${player.name} avatar" class="h-full w-full object-cover" loading="lazy" />
-    </div>
-    <h3 class="text-center text-2xl font-black">${player.name}</h3>
-    <p class="mt-1 text-center text-sm text-slate-300">${player.role}</p>
-    <p class="mt-3 flex items-center justify-center gap-2 text-xs font-bold text-emerald-300">
-      <span class="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]"></span>
-      ONLINE
-    </p>
+    <div class="player-avatar"><img src="${player.image}" alt="${player.name} avatar" loading="lazy" /></div>
+    <h3 style="margin:0;font-size:1.4rem">${player.name}</h3>
+    <p class="muted" style="margin:0.25rem 0 0">${player.role}</p>
+    <p class="status" style="margin-top:0.7rem"><span class="dot"></span>ONLINE</p>
   `;
   return card;
 }
 
-players.map(createPlayerCard).forEach((card) => playersGrid.appendChild(card));
+players.map(playerCard).forEach((el) => playersGrid.appendChild(el));
 
-joinForm.addEventListener('submit', (event) => {
+form.addEventListener('submit', (event) => {
   event.preventDefault();
-  const code = teamCodeInput.value.trim().toUpperCase();
+  const code = input.value.trim().toUpperCase();
 
   if (!validCodes.has(code)) {
-    joinMessage.textContent = 'Invalid team code. Please try again.';
-    joinMessage.className = 'min-h-6 text-center text-sm font-semibold text-red-400 drop-shadow-[0_0_8px_rgba(248,113,113,0.75)]';
-    joinCard.classList.remove('border-emerald-300/70', 'shadow-[0_0_30px_rgba(52,211,153,0.28)]');
-    joinCard.classList.add('border-red-400/75', 'shadow-[0_0_30px_rgba(248,113,113,0.32)]', 'shake');
-    setTimeout(() => joinCard.classList.remove('shake'), 360);
+    message.textContent = 'Invalid team code. Please try again.';
+    message.style.color = 'var(--danger)';
+    card.classList.add('shake');
+    card.style.borderColor = 'rgba(255,107,128,0.8)';
+    card.style.boxShadow = '0 0 30px rgba(255,107,128,0.35)';
+    setTimeout(() => card.classList.remove('shake'), 350);
     return;
   }
 
-  joinMessage.textContent = 'Joined successfully! Welcome to Unstoppable Legends.';
-  joinMessage.className = 'min-h-6 text-center text-sm font-semibold text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.75)]';
-  joinCard.classList.remove('border-red-400/75', 'shadow-[0_0_30px_rgba(248,113,113,0.32)]', 'shake');
-  joinCard.classList.add('border-emerald-300/70', 'shadow-[0_0_30px_rgba(52,211,153,0.28)]');
+  message.textContent = 'Joined successfully! Welcome to Unstoppable Legends.';
+  message.style.color = 'var(--success)';
+  card.style.borderColor = 'rgba(86,227,159,0.8)';
+  card.style.boxShadow = '0 0 30px rgba(86,227,159,0.35)';
 });

@@ -1,22 +1,22 @@
-# GameVerse Premium UI
+# GameVerse Premium Redesign
 
-A fully transformed cinematic frontend for a gaming video platform using **HTML + Tailwind CSS + JavaScript**.
+This project is a full cinematic UI redesign of the existing gaming video platform.
 
 ## Pages
 
-- `index.html` — Home with cinematic hero and Netflix-style horizontal video row
-- `game.html` — Game catalog with glow chips, search, and premium video grid
-- `video-player.html` — Large player layout with animated like and related feed
-- `join-team.html` — Floating glass join card and active players section
+- `index.html` — Home hero + premium horizontal content row
+- `game.html` — Game browsing with glow filters, search, and card grid
+- `video-player.html` — Large player layout with dynamic related list and like pulse
+- `join-team.html` — Floating glass join module + active players section
 
-## Features
+## UI System Highlights
 
-- Layered cinematic background (radial lights + vignette + animated glow)
-- Glassmorphism UI system with neon depth
-- Hover lift/scale/glow interactions across cards and controls
-- Reveal-on-scroll motion for all major sections
-- Client-side interactions for filters, search, likes, related switching, and team-code validation
+- Layered cinematic background with vignette depth
+- Glassmorphism surfaces and neon lighting accents
+- Floating cards with lift/zoom/glow interactions
+- Scroll reveal motion and micro-interactions
+- Client-side interactivity for filters, search, likes, and team-code validation
 
-## Run locally
+## Run
 
-Open `index.html` in your browser and navigate between pages.
+Open `index.html` locally in your browser.

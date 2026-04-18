@@ -4,52 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GameVerse | Free Fire</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="text-slate-100">
+  <body>
     <div class="page-bg"></div>
 
-    <header class="sticky top-3 z-50 mx-auto mt-4 w-[min(1240px,calc(100%-1.5rem))] rounded-2xl glass-card neon-border px-4 py-3 md:px-6">
-      <div class="flex flex-wrap items-center justify-between gap-4">
-        <a class="flex items-center gap-2 text-2xl font-black text-orange-400" href="index.html">🎮 GameVerse</a>
-        <nav class="flex items-center gap-6 text-sm font-semibold text-slate-100/90">
-          <a class="transition hover:text-orange-200" href="index.html">Home</a>
-          <a class="transition hover:text-orange-200" href="#">Leaderboard</a>
-          <a class="transition hover:text-orange-200" href="join-team.html">Join Team</a>
+    <header class="container navbar glass">
+      <div class="navbar__inner">
+        <a class="brand" href="index.html">🎮 GameVerse</a>
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="#">Leaderboard</a>
+          <a href="join-team.html">Join Team</a>
         </nav>
-        <div class="flex items-center gap-2">
-          <button class="rounded-lg border border-purple-400/50 bg-slate-900/70 px-4 py-2 text-sm font-semibold">Login</button>
-          <button class="rounded-lg bg-gradient-to-r from-orange-500 to-amber-400 px-4 py-2 text-sm font-bold text-slate-950 shadow-[0_0_20px_rgba(255,122,28,0.45)] transition hover:scale-105">Sign Up</button>
+        <div class="nav-actions">
+          <button class="btn btn--ghost">Login</button>
+          <button class="btn btn--primary">Sign Up</button>
         </div>
       </div>
     </header>
 
-    <main class="mx-auto w-[min(1240px,calc(100%-1.5rem))] pb-10">
-      <section class="hero-cinematic reveal relative mt-4 overflow-hidden rounded-3xl border border-white/15 bg-[linear-gradient(120deg,rgba(9,10,20,0.82),rgba(9,10,20,0.26)),url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=2000&q=80')] min-h-[320px] shadow-[0_22px_48px_rgba(6,8,16,0.72)]">
-        <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
-        <h1 class="relative z-10 p-10 text-5xl font-black md:p-14 md:text-7xl">FREE FIRE</h1>
-      </section>
-
-      <section class="reveal mt-6 rounded-2xl glass-card neon-border p-4">
-        <div class="flex flex-wrap items-center justify-between gap-3">
-          <div id="filter-chips" class="flex flex-wrap gap-2"></div>
-          <label class="flex min-w-[230px] items-center gap-2 rounded-full border border-purple-300/35 bg-black/35 px-4 py-2 transition focus-within:border-orange-400 focus-within:shadow-[0_0_18px_rgba(255,122,28,0.45)]">
-            <span>⌕</span>
-            <input id="video-search" type="search" placeholder="Search videos..." class="w-full bg-transparent text-sm outline-none placeholder:text-slate-300/70" />
-          </label>
+    <main class="container">
+      <section class="hero hero--sm reveal">
+        <div class="hero__image" style="background-image:url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=2100&q=80')"></div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content" style="padding-top:4rem">
+          <h1 class="hero__title" style="font-size:clamp(2.4rem,6vw,4.4rem)">FREE FIRE</h1>
         </div>
       </section>
 
-      <section class="reveal mt-6">
-        <div id="game-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
-        <button id="load-more" class="mx-auto mt-8 block rounded-xl bg-gradient-to-r from-orange-500 via-orange-400 to-amber-300 px-7 py-3 text-base font-black text-slate-950 shadow-[0_0_24px_rgba(255,122,28,0.48)] transition hover:scale-105">Load More</button>
+      <section class="filter-bar glass reveal">
+        <div class="filter-wrap">
+          <div id="filter-chips" class="chips"></div>
+          <label class="search"><span>⌕</span><input id="video-search" type="search" placeholder="Search videos..." /></label>
+        </div>
       </section>
 
-      <footer class="mt-14 flex flex-wrap items-center justify-center gap-6 border-t border-white/15 py-6 text-sm text-slate-300/90">
+      <section class="section reveal" style="margin-top:1.2rem">
+        <div id="game-grid" class="video-grid"></div>
+        <button id="load-more" class="btn btn--primary" style="display:block;margin:1.8rem auto 0">Load More</button>
+      </section>
+
+      <footer class="footer">
         <a href="#">About</a><a href="#">Contact</a><a href="#">Privacy Policy</a><a href="#">Terms & Conditions</a>
       </footer>
     </main>

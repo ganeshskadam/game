@@ -1,4 +1,4 @@
-const relatedVideos = [
+const videos = [
   { id: 'dQw4w9WgXcQ', title: 'Epic Headshots and Insane Gameplay!', category: 'Skills', views: '1.2M views', duration: '15:21', likes: '34.7K', thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1000&q=80' },
   { id: '3JZ_D3ELwOQ', title: 'Fastest Reflexes in Ranked Match', category: 'Skills', views: '1.4M views', duration: '13:45', likes: '41.2K', thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1000&q=80' },
   { id: 'l482T0yNkeo', title: 'Pro Squad Wipe Masterclass', category: 'Skills', views: '1.3M views', duration: '11:12', likes: '29.8K', thumbnail: 'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=1000&q=80' },
@@ -6,7 +6,7 @@ const relatedVideos = [
   { id: '9bZkp7q19f0', title: 'Sniper Montage: Perfect AWM Kills', category: 'Skills', views: '890K views', duration: '9:50', likes: '19.4K', thumbnail: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=1000&q=80' },
 ];
 
-const state = { activeVideo: relatedVideos[0], liked: false };
+const state = { current: videos[0], liked: false };
 
 const frame = document.getElementById('video-frame');
 const title = document.getElementById('video-title');
@@ -16,57 +16,50 @@ const viewsBottom = document.getElementById('video-views-bottom');
 const likeCount = document.getElementById('like-count');
 const likeCountBottom = document.getElementById('like-count-bottom');
 const likeButtons = [document.getElementById('like-button'), document.getElementById('like-button-bottom')];
-const relatedList = document.getElementById('related-list');
+const related = document.getElementById('related-list');
 
-function createRelatedItem(video) {
+function relatedItem(video) {
   const item = document.createElement('button');
   item.type = 'button';
-  item.className = 'group hover-card w-full overflow-hidden rounded-2xl border border-white/15 glass-card text-left';
+  item.className = 'related-item video-card';
   item.innerHTML = `
-    <div class="relative overflow-hidden">
-      <img src="${video.thumbnail}" alt="${video.title} thumbnail" class="h-36 w-full object-cover transition duration-300 group-hover:scale-110" loading="lazy" />
-      <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-      <span class="absolute left-2 top-2 rounded-full bg-purple-500/85 px-2 py-0.5 text-[11px] font-bold">${video.category}</span>
-    </div>
-    <div class="flex items-center justify-between px-3 py-2 text-sm font-bold text-slate-100/95">
-      <p>${video.views}</p>
-      <p>${video.duration}</p>
-    </div>
+    <img src="${video.thumbnail}" alt="${video.title} thumbnail" loading="lazy" />
+    <span class="badge">${video.category}</span>
+    <div class="related-item__meta"><span>${video.views}</span><span>${video.duration}</span></div>
   `;
   item.addEventListener('click', () => {
-    state.activeVideo = video;
+    state.current = video;
     state.liked = false;
-    renderPlayer();
+    render();
   });
   return item;
 }
 
 function renderRelated() {
-  relatedList.innerHTML = '';
-  relatedVideos.filter((video) => video.id !== state.activeVideo.id).map(createRelatedItem).forEach((item) => relatedList.appendChild(item));
+  related.innerHTML = '';
+  videos.filter((video) => video.id !== state.current.id).map(relatedItem).forEach((item) => related.appendChild(item));
 }
 
-function renderPlayer() {
-  const current = state.activeVideo;
-  frame.src = `https://www.youtube.com/embed/${current.id}?rel=0`;
-  title.textContent = current.title;
-  titleBottom.textContent = current.title;
-  views.textContent = current.views;
-  viewsBottom.textContent = current.views;
-  likeCount.textContent = current.likes;
-  likeCountBottom.textContent = current.likes;
-  likeButtons.forEach((button) => button.setAttribute('aria-pressed', String(state.liked)));
+function render() {
+  frame.src = `https://www.youtube.com/embed/${state.current.id}?rel=0`;
+  title.textContent = state.current.title;
+  views.textContent = state.current.views;
+  titleBottom.textContent = state.current.title;
+  viewsBottom.textContent = state.current.views;
+  likeCount.textContent = state.current.likes;
+  likeCountBottom.textContent = state.current.likes;
+  likeButtons.forEach((btn) => btn.setAttribute('aria-pressed', String(state.liked)));
   renderRelated();
 }
 
-function handleLike() {
+function onLike() {
   state.liked = !state.liked;
-  likeButtons.forEach((button) => {
-    button.classList.add('pulse-like');
-    button.setAttribute('aria-pressed', String(state.liked));
-    window.setTimeout(() => button.classList.remove('pulse-like'), 350);
+  likeButtons.forEach((btn) => {
+    btn.classList.add('pulse');
+    btn.setAttribute('aria-pressed', String(state.liked));
+    setTimeout(() => btn.classList.remove('pulse'), 350);
   });
 }
 
-likeButtons.forEach((button) => button.addEventListener('click', handleLike));
-renderPlayer();
+likeButtons.forEach((btn) => btn.addEventListener('click', onLike));
+render();

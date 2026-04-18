@@ -15,20 +15,15 @@ const gameVideos = [
 
 const state = { filter: 'All', query: '', visibleCount: 8 };
 
-const filterChips = document.getElementById('filter-chips');
-const gameGrid = document.getElementById('game-grid');
+const chips = document.getElementById('filter-chips');
+const grid = document.getElementById('game-grid');
 const searchInput = document.getElementById('video-search');
 const loadMoreBtn = document.getElementById('load-more');
 
-function createFilterChip(label) {
+function createChip(label) {
   const chip = document.createElement('button');
-  const active = label === state.filter;
   chip.type = 'button';
-  chip.className = `rounded-full border px-4 py-2 text-sm font-bold transition ${
-    active
-      ? 'border-orange-300 bg-orange-500/25 text-orange-100 shadow-[0_0_18px_rgba(255,122,28,0.45)] scale-105'
-      : 'border-white/20 bg-white/10 text-slate-100 hover:border-orange-300/60 hover:bg-orange-500/15'
-  }`;
+  chip.className = `chip ${label === state.filter ? 'active' : ''}`;
   chip.textContent = label;
   chip.addEventListener('click', () => {
     state.filter = label;
@@ -38,41 +33,40 @@ function createFilterChip(label) {
   return chip;
 }
 
-function createVideoCard(video) {
+function createCard(video) {
   const card = document.createElement('a');
   card.href = 'video-player.html';
-  card.className = 'group hover-card relative overflow-hidden rounded-2xl border border-white/15 glass-card';
+  card.className = 'video-card';
   card.innerHTML = `
-    <img src="${video.thumbnail}" alt="${video.title} thumbnail" class="h-52 w-full object-cover transition duration-300 group-hover:scale-110" loading="lazy" />
-    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent"></div>
-    <span class="absolute left-3 top-3 rounded-full bg-purple-500/85 px-2 py-1 text-xs font-bold">${video.category}</span>
-    <div class="absolute inset-x-0 bottom-0 p-3">
-      <p class="text-base font-black">${video.title}</p>
-      <p class="text-sm text-slate-200/90">${video.views}</p>
+    <img src="${video.thumbnail}" alt="${video.title} thumbnail" loading="lazy" />
+    <span class="badge">${video.category}</span>
+    <div class="video-card__meta">
+      <h3>${video.title}</h3>
+      <p>${video.views}</p>
     </div>
   `;
   return card;
 }
 
-function filteredVideos() {
+function filterVideos() {
   return gameVideos.filter((video) => {
-    const matchesFilter = state.filter === 'All' || video.category === state.filter;
-    const matchesSearch = video.title.toLowerCase().includes(state.query.toLowerCase());
-    return matchesFilter && matchesSearch;
+    const byFilter = state.filter === 'All' || video.category === state.filter;
+    const bySearch = video.title.toLowerCase().includes(state.query.toLowerCase());
+    return byFilter && bySearch;
   });
 }
 
 function render() {
-  filterChips.innerHTML = '';
-  filterOptions.forEach((option) => filterChips.appendChild(createFilterChip(option)));
+  chips.innerHTML = '';
+  filterOptions.forEach((option) => chips.appendChild(createChip(option)));
 
-  const results = filteredVideos();
-  const visibleVideos = results.slice(0, state.visibleCount);
+  const result = filterVideos();
+  const visible = result.slice(0, state.visibleCount);
 
-  gameGrid.innerHTML = '';
-  visibleVideos.map(createVideoCard).forEach((card) => gameGrid.appendChild(card));
+  grid.innerHTML = '';
+  visible.map(createCard).forEach((card) => grid.appendChild(card));
 
-  loadMoreBtn.hidden = results.length <= state.visibleCount;
+  loadMoreBtn.hidden = result.length <= state.visibleCount;
 }
 
 searchInput.addEventListener('input', (event) => {
