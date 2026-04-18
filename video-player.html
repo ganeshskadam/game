@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameVerse | Video</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-bg"></div>
+
+    <header class="container navbar glass">
+      <div class="navbar__inner">
+        <a class="brand" href="index.html">🎮 GameVerse</a>
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="#">Leaderboard</a>
+          <a href="join-team.html">Join Team</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="btn btn-ghost">Logout</button>
+          <button class="btn btn-ghost">👾</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="section hero reveal" style="min-height: 250px; background-image: linear-gradient(120deg, rgba(9,10,20,0.82), rgba(9,10,20,0.2)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=2000&q=80')">
+        <div class="hero__content" style="padding-top: 52px">
+          <h1 class="hero__title">FREE FIRE</h1>
+        </div>
+      </section>
+
+      <section class="section video-layout reveal">
+        <article class="panel glass">
+          <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:10px">
+            <h2 id="video-title" style="margin:0;font-size:clamp(1.45rem,3vw,2.4rem);font-weight:900">Epic Headshots and Insane Gameplay!</h2>
+            <button id="like-button" class="like">❤️ <span id="like-count">34.7K</span></button>
+          </div>
+          <p id="video-views" style="margin:.5rem 0 0;color:var(--muted);font-size:.9rem">1.2M views</p>
+
+          <div class="video-frame" style="margin-top:14px">
+            <iframe id="video-frame" src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" title="GameVerse video player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+
+          <div style="margin-top:15px;padding-top:13px;border-top:1px solid rgba(255,255,255,0.15);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px">
+            <div>
+              <h3 id="video-title-bottom" style="margin:0;font-size:1.35rem;font-weight:900">Epic Headshots and Insane Gameplay!</h3>
+              <p id="video-views-bottom" style="margin:4px 0 0;color:var(--muted);font-size:.9rem">1.2M views</p>
+            </div>
+            <button id="like-button-bottom" class="like">❤️ <span id="like-count-bottom">34.7K</span></button>
+          </div>
+        </article>
+
+        <aside class="panel glass">
+          <h3 style="margin:0 0 12px;font-size:1.7rem;font-weight:900">Related Videos</h3>
+          <div id="related-list" style="display:grid;gap:10px"></div>
+        </aside>
+      </section>
+
+      <footer class="footer">
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+      </footer>
+    </main>
+
+    <script src="player.js"></script>
+    <script src="ui-effects.js"></script>
+  </body>
+</html>
